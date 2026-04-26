@@ -1,9 +1,0 @@
-Model,Baseline,RFE,RFECV,Forward,Backward,Best Method,Best Score,Δ vs Baseline
-Logistic Regression,85.25,88.52,86.89,75.41,86.89,RFE,88.52,3.27
-Decision Tree,68.85,67.21,77.05,81.97,70.49,Forward,81.97,13.12
-Random Forest,90.16,88.52,90.16,78.69,83.61,RFECV,90.16,0.0
-SVM,90.16,85.25,86.89,78.69,85.25,RFECV,86.89,-3.27
-KNN,85.25,81.97,83.61,77.05,85.25,Backward,85.25,0.0
-XGBoost,86.89,73.77,85.25,78.69,80.33,RFECV,85.25,-1.64
-Naive Bayes,83.61,83.61,81.97,62.3,86.89,Backward,86.89,3.28
-Neural Network,80.33,85.25,81.97,72.13,80.33,RFE,85.25,4.92

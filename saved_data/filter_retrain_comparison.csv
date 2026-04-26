@@ -1,9 +1,0 @@
-Model,Baseline F1,Filter F1,Difference,Improved?
-Logistic Regression,0,0.8854,0.8854,✅ Yes
-Decision Tree,0,0.7213,0.7213,✅ Yes
-Random Forest,0,0.9017,0.9017,✅ Yes
-SVM,0,0.8852,0.8852,✅ Yes
-KNN,0,0.8686,0.8686,✅ Yes
-XGBoost,0,0.9017,0.9017,✅ Yes
-Naive Bayes,0,0.869,0.869,✅ Yes
-Neural Network (MLP),0,0.8525,0.8525,✅ Yes

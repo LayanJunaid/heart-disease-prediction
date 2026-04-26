@@ -1,9 +1,0 @@
-Model,Baseline,LASSO,RF,Union,Best Subset,Change vs Baseline
-Logistic Regression,84.21,86.67,86.21,90.0,Union,5.79
-Decision Tree,65.45,73.68,53.85,55.56,LASSO,8.23
-Random Forest,90.0,88.52,90.0,88.14,Baseline,0.0
-SVM,90.32,88.14,70.37,90.32,Baseline,0.0
-KNN,85.71,83.33,69.09,90.0,Union,4.29
-XGBoost,86.67,83.33,82.76,90.0,Union,3.33
-Naive Bayes,82.14,89.66,88.89,88.52,LASSO,7.52
-Neural Network,78.57,83.33,85.19,84.21,RF,6.62
