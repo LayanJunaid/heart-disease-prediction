@@ -1,0 +1,9 @@
+Model,Best Method,Best F1 (%),Baseline F1 (%),Δ vs Baseline,Result
+Logistic Regression,Emb-Union,90.0,84.21,5.79,↑ +5.8%
+Decision Tree,Wrap-RFE,81.36,65.45,15.91,↑ +15.9%
+Random Forest,Baseline,90.0,90.0,0.0,→ same
+SVM,Baseline,90.32,90.32,0.0,→ same
+KNN,Emb-Union,90.0,85.71,4.29,↑ +4.3%
+XGBoost,Filter,90.0,86.67,3.33,↑ +3.3%
+Naive Bayes,Emb-LASSO,89.66,82.14,7.52,↑ +7.5%
+Neural Network,Emb-RF,85.19,78.57,6.62,↑ +6.6%
