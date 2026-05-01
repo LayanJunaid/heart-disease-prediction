@@ -1,13 +1,13 @@
-# 🫀 Heart Disease Prediction using Machine Learning
+#  Heart Disease Prediction using Machine Learning
 
-## 📌 Overview
+##  Overview
 This project aims to predict the presence of heart disease using machine learning techniques. By analyzing patient health attributes such as age, blood pressure, cholesterol levels, and other clinical features, the model can classify whether a patient is at risk of heart disease.
 
 Early prediction of heart disease plays a crucial role in reducing mortality and enabling timely medical intervention.
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 - Build a machine learning pipeline for heart disease prediction  
 - Apply data preprocessing techniques  
 - Compare multiple classification models  
@@ -16,7 +16,7 @@ Early prediction of heart disease plays a crucial role in reducing mortality and
 
 ---
 
-## 📊 Dataset
+##  Dataset
 The dataset used in this project contains medical attributes such as:
 - Age  
 - Sex  
@@ -32,7 +32,7 @@ The target variable indicates:
 
 ---
 
-## ⚙️ Methodology
+##  Methodology
 
 ### 1. Data Preprocessing
 - Handling missing values  
@@ -59,7 +59,7 @@ Several machine learning models are implemented:
 
 ---
 
-## 📈 Model Evaluation
+##  Model Evaluation
 Models are evaluated using:
 - Accuracy  
 - Precision  
@@ -70,14 +70,14 @@ These metrics ensure reliable predictions, especially in medical applications wh
 
 ---
 
-## 🏆 Results
+##  Results
 - Models are compared based on performance  
 - The best model is selected  
 - Impact of feature selection is analyzed  
 
 ---
 
-## 🚀 How to Run the Project
+##  How to Run the Project
 
 1. Clone the repository:
 ```bash
@@ -87,13 +87,13 @@ pip install -r requirements.txt
 Run the notebook:
 Open the .ipynb file using Jupyter Notebook or Google Colab
 Run all cells
-🧠 Technologies Used
+ Technologies Used
 Python
 Pandas
 NumPy
 Scikit-learn
 Matplotlib
 Seaborn
-⚠️ Disclaimer
+ Disclaimer
 
 This project is for educational purposes only and should not be used as a substitute for professional medical diagnosis.
