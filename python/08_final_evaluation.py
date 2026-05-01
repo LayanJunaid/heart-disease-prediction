@@ -1,5 +1,5 @@
 # Generated from: 08_final_evaluation.ipynb
-# Converted at: 2026-04-26T08:43:06.486Z
+# Converted at: 2026-05-01T12:52:32.919Z
 # Next step (optional): refactor into modules & generate tests with RunCell
 # Quick start: pip install runcell
 
@@ -329,11 +329,31 @@ display(master_df.style
 print('BEST METHOD PER MODEL (F1-Score)')
 print('=' * 70)
 
+# Number of features used by each method (Baseline = all 13)
+METHOD_N_FEATURES = {
+    'Baseline'  : len(feature_names),
+    'Filter'    : len(filter_selected_features),
+    'Emb-LASSO' : len(embedded_lasso_features),
+    'Emb-RF'    : len(embedded_rf_features),
+    'Emb-Union' : len(embedded_union_features),
+    'Wrap-RFE'  : len(rfe_features_for_eval),
+    'Wrap-RFECV': len(wrapper_rfecv_features),
+    'Wrap-Fwd'  : len(wrapper_forward_features),
+    'Wrap-Bwd'  : len(wrapper_backward_features),
+}
+
+def pick_best_method(row):
+    """Return the method with max F1; on a tie, prefer the one with fewest features."""
+    max_val = row.max()
+    tied    = [col for col in row.index if row[col] == max_val]
+    # Sort tied methods by feature count (ascending), pick first
+    tied_sorted = sorted(tied, key=lambda m: METHOD_N_FEATURES.get(m, 999))
+    return tied_sorted[0], max_val
+
 winner_rows = []
 for name in MODEL_NAMES:
     row      = master_df.loc[name]
-    best_col = row.idxmax()
-    best_val = row.max()
+    best_col, best_val = pick_best_method(row)
     base_val = row['Baseline']
     delta    = round(best_val - base_val, 2)
     arrow    = f'↑ +{delta:.1f}%' if delta > 0 else (f'↓ {delta:.1f}%' if delta < 0 else '→ same')
@@ -363,6 +383,7 @@ display(winner_df.style
               else ('background-color: #fadbd8' if isinstance(v, str) and '↓' in v else ''),
               subset=['Result'])
 )
+
 
 # ## Cell 5 — Method-Level Summary (Average Across All Models)
 # 
@@ -484,7 +505,7 @@ ax.grid(axis='y', alpha=0.3)
 sns.despine()
 
 plt.tight_layout()
-plt.savefig('final_grouped_barchart.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_grouped_barchart.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Grouped bar chart saved!')
 
@@ -584,7 +605,7 @@ for ax, df, title in zip(axes, dfs, titles):
 plt.suptitle('Performance Heatmaps — Baseline vs Best of Each Feature Selection Category (%)',
              fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig('final_heatmaps.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_heatmaps.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Heatmaps saved!')
 
@@ -646,7 +667,7 @@ ax.set_title(f'Radar Chart — {best_overall_model}\n(Baseline vs All Feature Se
 ax.legend(loc='upper right', bbox_to_anchor=(1.3, 1.15), fontsize=10)
 
 plt.tight_layout()
-plt.savefig('final_radar_chart.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_radar_chart.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Radar chart saved!')
 
@@ -701,7 +722,7 @@ ax.grid(True, alpha=0.3)
 sns.despine()
 
 plt.tight_layout()
-plt.savefig('final_roc_curves.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_roc_curves.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ ROC curves saved!')
 
@@ -756,7 +777,7 @@ for ax, (title, X_tr, X_te) in zip(axes, configs):
             color='#c0392b' if fn > 3 else '#27ae60', fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('final_confusion_matrices.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_confusion_matrices.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Confusion matrices saved!')
 
@@ -841,7 +862,7 @@ axes[1].legend(fontsize=9)
 plt.suptitle('Recall Analysis — How Many Sick Patients Are Correctly Identified?',
              fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig('final_recall_analysis.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_recall_analysis.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Recall analysis saved!')
 
@@ -922,7 +943,7 @@ axes[1].legend(fontsize=9)
 
 plt.suptitle('Cross-Method Feature Importance Agreement', fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig('final_feature_importance.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_feature_importance.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Feature importance chart saved!')
 
@@ -945,8 +966,25 @@ print('=' * 70)
 print('             FINAL RANKING — FEATURE SELECTION METHODS')
 print('=' * 70)
 
-# Average F1 per method
-avg_f1_methods = master_df.mean().sort_values(ascending=False).round(2)
+# Number of features used by each method (Baseline = all features)
+METHOD_N_FEATURES = {
+    'Baseline'  : len(feature_names),
+    'Filter'    : len(filter_selected_features),
+    'Emb-LASSO' : len(embedded_lasso_features),
+    'Emb-RF'    : len(embedded_rf_features),
+    'Emb-Union' : len(embedded_union_features),
+    'Wrap-RFE'  : len(rfe_features_for_eval),
+    'Wrap-RFECV': len(wrapper_rfecv_features),
+    'Wrap-Fwd'  : len(wrapper_forward_features),
+    'Wrap-Bwd'  : len(wrapper_backward_features),
+}
+
+# Average F1 per method — tie-break by fewest features
+avg_f1_methods = master_df.mean().round(2)
+avg_f1_methods = avg_f1_methods.sort_values(
+    ascending=False,
+    key=lambda s: list(zip(-s, [METHOD_N_FEATURES.get(m, 999) for m in s.index]))
+)
 
 print('\n📊 Methods Ranked by Average F1-Score (All 8 models):')
 print('-' * 50)
@@ -956,23 +994,28 @@ for rank, (method, val) in enumerate(avg_f1_methods.items(), 1):
     trend = f' (+{delta:.1f}%)' if delta > 0 else f' ({delta:.1f}%)'
     print(f'  {medal} {method:<14}: {val:.2f}%{trend}')
 
-# Best model-method combo
+# Best model-method combo — tie-break: fewest features (Baseline last)
 flat_scores = []
 for model in MODEL_NAMES:
     for method in method_cols:
         flat_scores.append((model, method, master_df.loc[model, method]))
-flat_scores.sort(key=lambda x: -x[2])
+flat_scores.sort(key=lambda x: (-x[2], METHOD_N_FEATURES.get(x[1], 999)))
 
 print('\n🏆 Top 10 Best Model-Method Combinations (by F1-Score):')
 print('-' * 55)
 for rank, (model, method, score) in enumerate(flat_scores[:10], 1):
     print(f'  {rank:>2}. {model:<22} + {method:<14}: {score:.2f}%')
 
-# Medical winner: best recall
+# Medical winner: best recall — tie-break by fewest features
+stacked_recall = recall_df.stack()
+max_recall_val = stacked_recall.max()
+tied_recall    = [(idx, v) for idx, v in stacked_recall.items() if v == max_recall_val]
+tied_recall_sorted = sorted(tied_recall, key=lambda x: METHOD_N_FEATURES.get(x[0][1], 999))
+best_recall_idx    = tied_recall_sorted[0][0]   # (model, method)
+best_recall_model  = best_recall_idx[0]
+best_recall_method = best_recall_idx[1]
+best_recall_val    = max_recall_val
 avg_recall_final = {method: recall_df[method].mean() for method in method_cols}
-best_recall_method = max(avg_recall_final, key=avg_recall_final.get)
-best_recall_val    = avg_recall_final[best_recall_method]
-
 print(f'\n❤️  MEDICAL PRIORITY — Best Average Recall (fewest missed sick patients):')
 print(f'   Winner: {best_recall_method}  →  avg Recall = {best_recall_val:.2f}%')
 
@@ -1046,9 +1089,10 @@ axes[1].set_title('Improvement Over Baseline\n(Green = better, Red = worse)',
 plt.suptitle('Final Method Ranking — Heart Disease Feature Selection',
              fontsize=14, fontweight='bold')
 plt.tight_layout()
-plt.savefig('final_ranking.png', dpi=150, bbox_inches='tight')
+plt.savefig('png/final_ranking.png', dpi=150, bbox_inches='tight')
 plt.show()
 print('✅ Final ranking chart saved!')
+
 
 # ## Cell 14 — Save All Final Results
 
@@ -1110,7 +1154,7 @@ print(f'    Best Method (avg F1)       : {avg_f1_methods.index[0]}  → {avg_f1_
 print(f'    Runner-up                  : {avg_f1_methods.index[1]}  → {avg_f1_methods.iloc[1]:.2f}%')
 print(f'    Baseline avg F1            : {avg_f1_methods["Baseline"]:.2f}%')
 print(f'    Best Model-Method Combo    : {flat_scores[0][0]} + {flat_scores[0][1]}  ({flat_scores[0][2]:.2f}%)')
-print(f'    Best Medical Recall Method : {best_recall_method}  ({best_recall_val:.2f}%)')
+print(f'    Best Medical Recall Method : {best_recall_model + " + " + best_recall_method}  ({best_recall_val:.2f}%)')
 
 print(f'\n  MOST UNIVERSALLY IMPORTANT FEATURES:')
 print(f'    (Selected by ≥5 of 7 methods)')
@@ -1128,14 +1172,14 @@ print(f'    Models declined        : {declined} / {len(MODEL_NAMES)}')
 print(f'    Models unchanged       : {same} / {len(MODEL_NAMES)}')
 
 print(f'\n  PLOTS SAVED:')
-print(f'    → final_grouped_barchart.png')
-print(f'    → final_heatmaps.png')
-print(f'    → final_radar_chart.png')
-print(f'    → final_roc_curves.png')
-print(f'    → final_confusion_matrices.png')
-print(f'    → final_recall_analysis.png')
-print(f'    → final_feature_importance.png')
-print(f'    → final_ranking.png')
+print(f'    → png/final_grouped_barchart.png')
+print(f'    → png/final_heatmaps.png')
+print(f'    → png/final_radar_chart.png')
+print(f'    → png/final_roc_curves.png')
+print(f'    → png/final_confusion_matrices.png')
+print(f'    → png/final_recall_analysis.png')
+print(f'    → png/final_feature_importance.png')
+print(f'    → png/final_ranking.png')
 
 print()
 print('=' * 70)
