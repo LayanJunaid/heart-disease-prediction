@@ -35,7 +35,7 @@
 # CELL 1 — Install & Import All Required Libraries
 # ============================================================
 
-!pip install xgboost --quiet
+
 
 # --- Core libraries ---
 import pandas as pd
