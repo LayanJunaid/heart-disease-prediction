@@ -107,7 +107,7 @@ Server starts at: `http://localhost:5001`
 
 ---
 
-## 🌐 API Reference
+## API Reference
 
 ### Base URL
 ```
