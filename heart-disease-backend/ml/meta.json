@@ -1,0 +1,30 @@
+{
+  "model_name": "SVM",
+  "kernel": "linear",
+  "feature_set": "Emb-Union",
+  "n_features": 14,
+  "feature_names": [
+    "age",
+    "ca_1",
+    "ca_2",
+    "ca_3",
+    "chol",
+    "cp_3.0",
+    "cp_4.0",
+    "exang",
+    "oldpeak",
+    "sex",
+    "slope_2.0",
+    "thal_7",
+    "thalach",
+    "trestbps"
+  ],
+  "metrics": {
+    "accuracy": 86.89,
+    "precision": 83.33,
+    "recall": 89.29,
+    "f1": 86.21,
+    "roc_auc": 94.91
+  },
+  "trained_on": "2026-05-15 01:28:40.228740"
+}

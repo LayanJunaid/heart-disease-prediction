@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.example
+venv/
+# Logs
+logs/
+*.log
+
+# ML artifacts (large binary files — share separately or via Git LFS)
+ml/model.pkl
+ml/scaler.pkl
+ml/features.pkl
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
