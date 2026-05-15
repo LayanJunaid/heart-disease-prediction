@@ -64,7 +64,9 @@ Models are evaluated using:
 - Accuracy  
 - Precision  
 - Recall  
-- F1-score  
+- F1-score
+- AUC-RUC
+    
 
 These metrics ensure reliable predictions, especially in medical applications where recall is critical.
 
