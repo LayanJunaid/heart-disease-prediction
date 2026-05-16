@@ -1,4 +1,4 @@
-# ❤️ Heart Disease Prediction System
+# Heart Disease Prediction System
 
 An AI-powered web application designed to predict the possibility of heart disease using machine learning techniques and the UCI Heart Disease Dataset.
 
@@ -6,7 +6,7 @@ The system allows users to enter medical-related features and receive a predicti
 
 ---
 
-# 📌 Project Overview
+# Project Overview
 
 Heart disease is one of the leading causes of death worldwide. Early prediction can help users become more aware of potential health risks and encourage earlier medical consultation.
 
@@ -21,7 +21,7 @@ to create an accessible heart disease prediction platform.
 
 ---
 
-# ⚠️ Important Medical Disclaimer
+# Important Medical Disclaimer
 
 This system is developed for:
 
@@ -37,7 +37,7 @@ Users should always consult qualified healthcare professionals for accurate medi
 
 ---
 
-# 🧠 Machine Learning Model
+# Machine Learning Model
 
 The prediction model was trained using the:
 
@@ -54,7 +54,7 @@ The selected model was optimized to improve prediction accuracy and user experie
 
 ---
 
-# 📊 Features Used
+# Features Used
 
 The prediction system uses 14 medical-related features including:
 
@@ -73,7 +73,7 @@ The prediction system uses 14 medical-related features including:
 
 ---
 
-# 🌍 Supported Languages
+# Supported Languages
 
 The website currently supports:
 
@@ -83,7 +83,7 @@ The website currently supports:
 
 ---
 
-# 🎨 Front-End Features
+# Front-End Features
 
 The front-end includes:
 
@@ -98,7 +98,7 @@ The front-end includes:
 
 ---
 
-# 🛠️ Technologies Used
+# Technologies Used
 
 ## Front-End
 
@@ -123,7 +123,7 @@ The front-end includes:
 
 ---
 
-# 📂 Dataset
+# Dataset
 
 UCI Heart Disease Dataset:
 
@@ -131,7 +131,7 @@ https://archive.ics.uci.edu/ml/datasets/Heart+Disease
 
 ---
 
-# 🔗 GitHub Repository
+# GitHub Repository
 
 Project Repository:
 
@@ -139,7 +139,7 @@ https://github.com/LayanJunaid/heart-disease-prediction/tree/main
 
 ---
 
-# 👨‍💻 Team Members
+# Team Members
 
 - Sidra Ashram
 - Layan Junaid
@@ -147,7 +147,7 @@ https://github.com/LayanJunaid/heart-disease-prediction/tree/main
 
 ---
 
-# 👨‍🏫 Advisor
+# Advisor
 
 Shahaboddin DANESHVAR
 
