@@ -1,6 +1,6 @@
 {
   "model_name": "SVM",
-  "kernel": "linear",
+  "kernel": "rbf",
   "feature_set": "Emb-Union",
   "n_features": 14,
   "feature_names": [
@@ -20,11 +20,11 @@
     "trestbps"
   ],
   "metrics": {
-    "accuracy": 86.89,
-    "precision": 83.33,
-    "recall": 89.29,
-    "f1": 86.21,
-    "roc_auc": 94.91
+    "accuracy": 90.16,
+    "precision": 82.35,
+    "recall": 100.0,
+    "f1": 90.32,
+    "roc_auc": 94.48
   },
-  "trained_on": "2026-05-15 01:28:40.228740"
+  "trained_on": "2026-05-16 17:55:01.957338"
 }

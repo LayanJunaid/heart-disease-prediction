@@ -21,10 +21,9 @@ SAVED_DATA = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
 
 
 def check_file(path, label):
-    """Dosya yoksa açıklayıcı hata mesajı ver."""
     if not os.path.exists(path):
-        print(f"   HATA: '{label}' bulunamadı: {path}")
-        print(f"     → Önce 05_embedded_feature_selection.py çalıştır.")
+        print(f"   ERROR: '{label}' not found: {path}")
+        print(f"     → PLEASE run 05_embedded_feature_selection.py first.")
         sys.exit(1)
 
 
@@ -37,20 +36,20 @@ def main():
 
     
     required = {
-        "X_train_scaled.pkl":       "Ölçeklendirilmiş eğitim verisi",
-        "X_test_scaled.pkl":        "Ölçeklendirilmiş test verisi",
-        "y_train.pkl":              "Eğitim etiketleri",
-        "y_test.pkl":               "Test etiketleri",
-        "feature_names.pkl":        "Tüm feature isimleri (OHE sonrası)",
-        "embedded_union_features.pkl": "Emb-Union seçili feature isimleri",
-        "scaler.pkl":               "StandardScaler nesnesi",
+        "X_train_scaled.pkl":       "Scaled training data",
+        "X_test_scaled.pkl":        "Scaled test data",
+        "y_train.pkl":              "Training labels",
+        "y_test.pkl":               "Test labels",
+        "feature_names.pkl":        "All feature names (after OHE)",
+        "embedded_union_features.pkl": "Emb-Union selected feature names",
+        "scaler.pkl":               "StandardScaler object",
     }
-    print("  Dosyalar kontrol ediliyor...")
+    print("  Files are being checked...")
     for fname, label in required.items():
         check_file(os.path.join(SAVED_DATA, fname), label)
         print(f"  {fname}")
 
-    print("\n  Veriler yükleniyor...")
+    print("\n  Loading data...")
     X_train_sc = joblib.load(os.path.join(SAVED_DATA, "X_train_scaled.pkl"))
     X_test_sc  = joblib.load(os.path.join(SAVED_DATA, "X_test_scaled.pkl"))
     y_train    = joblib.load(os.path.join(SAVED_DATA, "y_train.pkl"))
@@ -60,6 +59,7 @@ def main():
     scaler     = joblib.load(os.path.join(SAVED_DATA, "scaler.pkl"))
 
 
+#checking if loaded objects are already DataFrames/Series, if not convert them.
     if not isinstance(X_train_sc, pd.DataFrame):
         X_train_sc = pd.DataFrame(X_train_sc, columns=feat_names)
     if not isinstance(X_test_sc, pd.DataFrame):
@@ -74,28 +74,28 @@ def main():
     y_train    = y_train.reset_index(drop=True)
     y_test     = y_test.reset_index(drop=True)
 
-    print(f"    Toplam feature          : {len(feat_names)}")
-    print(f"    Emb-Union feature sayısı: {len(union_feat)}")
+    print(f"    Total features          : {len(feat_names)}")
+    print(f"    Emb-Union feature count : {len(union_feat)}")
     print(f"    Emb-Union features      : {union_feat}")
-    print(f"    Eğitim örnekleri        : {X_train_sc.shape[0]}")
-    print(f"    Test örnekleri          : {X_test_sc.shape[0]}")
-    print(f"    Sınıf dağılımı (train)  : {y_train.value_counts().to_dict()}")
+    print(f"    Training samples        : {X_train_sc.shape[0]}")
+    print(f"    Test samples            : {X_test_sc.shape[0]}")
+    print(f"    Class distribution (train): {y_train.value_counts().to_dict()}")
 
     missing = [f for f in union_feat if f not in X_train_sc.columns]
     if missing:
-        print(f"\n   Şu feature'lar bulunamadı: {missing}")
-        print(f"     Mevcut feature'lar: {list(X_train_sc.columns)}")
+        print(f"\n   The following features were not found: {missing}")
+        print(f"     Available features: {list(X_train_sc.columns)}")
         sys.exit(1)
 
-    # ESKİ KODUN YERİNE: Eski 22'lik scaler ile veriyi önce ham haline döndürüyoruz
+    #we transform the raw scaled data back to its original form using the inverse_transform method of the scaler. This gives us the raw feature values before scaling, which we can then filter to keep only the 14 features selected by the embedded union method. After filtering, we fit a new StandardScaler on this reduced set of features to ensure that our SVM model is trained on properly scaled data.
     X_train_raw = pd.DataFrame(scaler.inverse_transform(X_train_sc), columns=feat_names)
     X_test_raw  = pd.DataFrame(scaler.inverse_transform(X_test_sc), columns=feat_names)
 
-    # Şimdi sadece istediğimiz 14 özelliği filtreliyoruz
+    #now we filter 14 features selected by the embedded union method. 
     X_train_14_raw = X_train_raw[union_feat].copy()
     X_test_14_raw  = X_test_raw[union_feat].copy()
 
-    # SADECE bu 14 özellik için yepyeni bir Scaler eğitiyoruz
+    # train only for 14 features 
     new_scaler = StandardScaler()
     X_train = pd.DataFrame(new_scaler.fit_transform(X_train_14_raw), columns=union_feat)
     X_test  = pd.DataFrame(new_scaler.transform(X_test_14_raw), columns=union_feat)
@@ -103,15 +103,15 @@ def main():
     print(f"\n  Feature seçimi OK: {X_train.shape[1]} feature")
     print(f"  YENİ Scaler {X_train.shape[1]} özellik için başarıyla eğitildi.")
 
-    # SVM Eğit 
+    # SVM train
     # 09_hyperparameter_tuning.py'den en iyi parametreler:
-    # C=1.0 | kernel=linear | gamma=scale | class_weight=None
-    print("\n  SVM eğitiliyor...")
-    print("    C=1.0 | kernel=linear | gamma=scale | probability=True")
+    # C=1.0 | kernel=rbf | gamma=scale | class_weight=None
+    print("\n  SVM train...")
+    print("    C=1.0 | kernel=rbf | gamma=scale | probability=True")
 
     model = SVC(
         C=1.0,
-        kernel="linear",
+        kernel="rbf",
         gamma="scale",
         class_weight=None,
         probability=True,   # predict_proba() için ZORUNLU
@@ -120,7 +120,7 @@ def main():
     model.fit(X_train, y_train)
     print("Eğitim tamamlandı")
 
-    #  5. Değerlendirme ü
+    #  5. evaluation on test set
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)[:, 1]
 
@@ -132,20 +132,20 @@ def main():
         "roc_auc"  : round(roc_auc_score(y_test, y_prob) * 100, 2),
     }
 
-    print("\n   Test Set Sonuçları ")
+    print("\n   results on test set:")
     print(f"    Accuracy  : {metrics['accuracy']:.2f}%")
     print(f"    Precision : {metrics['precision']:.2f}%")
     print(f"    Recall    : {metrics['recall']:.2f}%  ← tıbbi öncelik")
     print(f"    F1-Score  : {metrics['f1']:.2f}%")
     print(f"    ROC-AUC   : {metrics['roc_auc']:.2f}%")
 
-    print("\n   Notebook Beklentisi ile Karşılaştırma ")
+    print("\n   Expected vs Actual Metrics:")
     expected = {"f1": 86.21, "recall": 89.29, "roc_auc": 94.91}
     for k, exp in expected.items():
         got   = metrics[k]
         delta = got - exp
         sign  = f"↑ +{delta:.2f}" if delta >= 0 else f"↓ {delta:.2f}"
-        print(f"    {k:<10}: beklenen={exp:.2f}%  elde={got:.2f}%  {sign}")
+        print(f"    {k:<10}: expected={exp:.2f}%  got={got:.2f}%  {sign}")
 
 
 
@@ -158,11 +158,11 @@ def main():
     for fname, obj in out.items():
         with open(os.path.join(SCRIPT_DIR, fname), "wb") as f:
             pickle.dump(obj, f)
-        print(f"\n{fname} kaydedildi")
+        print(f"\n{fname} saved")
 
     meta = {
         "model_name"   : "SVM",
-        "kernel"       : "linear",
+        "kernel"       : "rbf",
         "feature_set"  : "Emb-Union",
         "n_features"   : len(union_feat),
         "feature_names": union_feat,
@@ -172,10 +172,10 @@ def main():
     meta_path = os.path.join(SCRIPT_DIR, "meta.json")
     with open(meta_path, "w") as f:
         json.dump(meta, f, indent=2, ensure_ascii=False)
-    print(f" meta.json kaydedildi")
+    print(f" meta.json saved with model metadata")
 
-    print(f"\n  Tüm dosyalar: {SCRIPT_DIR}/")
-    print(f"\n Tamamdı! Backend'i başlatabilirsin: npm run dev\n")
+    print(f"\n  total files: {SCRIPT_DIR}/")
+    print(f"\n  ok now you can run npm run dev\n")
 
 
 if __name__ == "__main__":

@@ -22,7 +22,7 @@ def load_artifacts():
     ]:
         if not os.path.exists(path):
             raise FileNotFoundError(
-                f"{label} bulunamadı. Önce train.py çalıştır: "
+                f"{label} not found. Please run train.py before : "
                 f"python3 ml/train.py /path/to/saved_data/"
             )
 
@@ -32,7 +32,7 @@ def load_artifacts():
 
     return model, scaler, features
 
-
+# It checks for missing features and ensures that all values can be converted to floats, which is necessary for the model's prediction.
 def build_feature_dataframe(data: dict, features: list) -> pd.DataFrame:
 
     row = []
@@ -45,13 +45,13 @@ def build_feature_dataframe(data: dict, features: list) -> pd.DataFrame:
                 row.append(float(data[feat]))
             except (TypeError, ValueError):
                 raise ValueError(
-                    f"Feature '{feat}' float'a çevrilemiyor: {data[feat]!r}"
+                    f"Feature '{feat}' cannot be converted to float: {data[feat]!r}"
                 )
 
     if missing:
         raise KeyError(
-            f"Eksik feature'lar: {missing}. "
-            f"Beklenen feature listesi: {features}"
+            f"Missing features: {missing}. "
+            f"Expected feature list: {features}"
         )
 
    
@@ -112,12 +112,12 @@ def main():
         sys.exit(2)
 
     except KeyError as e:
-        print(json.dumps({"error": f"Eksik feature: {e}"}))
+        print(json.dumps({"error": f"Missing feature: {e}"}))
         sys.stderr.write(f"[predict_bridge] KeyError: {e}\n")
         sys.exit(1)
 
     except Exception as e:
-        print(json.dumps({"error": f"Beklenmeyen hata: {type(e).__name__}: {e}"}))
+        print(json.dumps({"error": f"Unexpected error: {type(e).__name__}: {e}"}))
         sys.stderr.write(f"[predict_bridge] Exception: {e}\n")
         sys.exit(1)
 
