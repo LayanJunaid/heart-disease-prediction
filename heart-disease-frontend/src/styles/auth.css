@@ -1,0 +1,200 @@
+.auth-page{
+
+  min-height:100vh;
+
+  background:#f8f9fc;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:60px 25px;
+
+  position:relative;
+}
+
+.auth-card{
+
+  width:100%;
+
+  max-width:460px;
+
+  background:white;
+
+  padding:45px 35px;
+
+  border-radius:30px;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.08);
+
+  position:relative;
+
+  z-index:2;
+}
+
+.auth-card h2{
+
+  margin-bottom:15px;
+
+  color:#111;
+}
+
+.auth-subtitle{
+
+  color:#666;
+
+  line-height:1.9;
+
+  margin-bottom:30px;
+}
+
+.google-btn{
+
+  width:100%;
+
+  border:none;
+
+  background:white;
+
+  border:
+  1px solid rgba(0,0,0,0.08);
+
+  padding:16px;
+
+  border-radius:20px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:12px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  transition:0.3s;
+
+  margin-bottom:25px;
+}
+
+.google-btn:hover{
+
+  transform:translateY(-2px);
+}
+
+.divider{
+
+  text-align:center;
+
+  color:#888;
+
+  margin-bottom:22px;
+}
+
+.auth-form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.auth-form input{
+
+  padding:16px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:#f5f9ff;
+
+  outline:none;
+
+  font-size:15px;
+
+  border:
+  1px solid rgba(90,141,255,0.08);
+}
+
+.auth-form button{
+
+  margin-top:10px;
+
+  border:none;
+
+  background:
+  linear-gradient(
+    135deg,
+    #57b8ff,
+    #2d7be5
+  );
+
+  color:white;
+
+  padding:16px;
+
+  border-radius:20px;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  transition:0.3s;
+}
+
+.auth-form button:hover{
+
+  transform:translateY(-3px);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .auth-page{
+
+    padding:35px 18px 80px;
+  }
+
+  .auth-card{
+
+    padding:35px 22px;
+
+    border-radius:24px;
+  }
+
+  .auth-card h2{
+
+    font-size:28px;
+  }
+
+  .auth-subtitle{
+
+    font-size:14px;
+  }
+
+  .google-btn{
+
+    font-size:14px;
+  }
+
+  .auth-form input{
+
+    font-size:14px;
+  }
+
+  .auth-form button{
+
+    width:100%;
+  }
+}

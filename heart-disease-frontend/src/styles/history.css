@@ -1,0 +1,76 @@
+.history-page{
+
+  min-height:100vh;
+
+  background:#f8f9fc;
+
+  padding:70px 25px;
+}
+
+.history-page h2{
+
+  text-align:center;
+
+  margin-bottom:40px;
+}
+
+.history-card{
+
+  background:white;
+
+  padding:30px;
+
+  border-radius:24px;
+
+  margin-bottom:25px;
+
+  box-shadow:
+  0 8px 20px rgba(0,0,0,0.06);
+
+  max-width:700px;
+
+  margin-left:auto;
+
+  margin-right:auto;
+}
+
+.history-card h3{
+
+  font-size:38px;
+
+  margin-bottom:12px;
+}
+
+.history-card p{
+
+  color:#666;
+
+  line-height:1.9;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .history-page{
+
+    padding:40px 18px 80px;
+  }
+
+  .history-card{
+
+    padding:24px 20px;
+
+    border-radius:22px;
+  }
+
+  .history-card h3{
+
+    font-size:30px;
+  }
+
+  .history-card p{
+
+    font-size:14px;
+  }
+}
