@@ -100,8 +100,8 @@ def main():
     X_train = pd.DataFrame(new_scaler.fit_transform(X_train_14_raw), columns=union_feat)
     X_test  = pd.DataFrame(new_scaler.transform(X_test_14_raw), columns=union_feat)
 
-    print(f"\n  Feature seçimi OK: {X_train.shape[1]} feature")
-    print(f"  YENİ Scaler {X_train.shape[1]} özellik için başarıyla eğitildi.")
+    print(f"\n  Feature selection OK: {X_train.shape[1]} feature")
+    print(f"  New Scaler {X_train.shape[1]} features trained successfully.")
 
     # SVM train
     # 09_hyperparameter_tuning.py'den en iyi parametreler:
@@ -118,7 +118,7 @@ def main():
         random_state=42,
     )
     model.fit(X_train, y_train)
-    print("Eğitim tamamlandı")
+    print("training completed")
 
     #  5. evaluation on test set
     y_pred = model.predict(X_test)
