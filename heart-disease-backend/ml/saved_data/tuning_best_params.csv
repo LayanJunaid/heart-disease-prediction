@@ -1,0 +1,13 @@
+,SVM,Random Forest,KNN
+C,1.0,,
+class_weight,,balanced,
+gamma,scale,,
+kernel,linear,,
+n_estimators,,200,
+min_samples_leaf,,1,
+max_features,,sqrt,
+max_depth,,,
+metric,,,manhattan
+n_neighbors,,,15
+p,,,1
+weights,,,distance
