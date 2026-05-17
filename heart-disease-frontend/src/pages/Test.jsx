@@ -17,6 +17,8 @@ function Test() {
 
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
 
     age:"",
@@ -151,7 +153,7 @@ function Test() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
 
@@ -175,15 +177,33 @@ function Test() {
       }
     }
 
-    const fakeProbability =
-      Math.floor(Math.random() * 100);
+    setLoading(true);
 
-    navigate("/result", {
+    try{
 
-      state:{
-        probability:fakeProbability,
-      },
-    });
+      await new Promise(
+        (resolve) =>
+          setTimeout(resolve,1500)
+      );
+
+      const fakeProbability =
+        Math.floor(Math.random() * 100);
+
+      navigate("/result", {
+
+        state:{
+          probability:fakeProbability,
+        },
+      });
+
+    }catch(error){
+
+      alert("Something went wrong.");
+
+    }finally{
+
+      setLoading(false);
+    }
   };
 
   return (
@@ -247,8 +267,17 @@ function Test() {
             </div>
           ))}
 
-          <button className="submit-btn">
-            {t("submit")}
+          <button
+            className="submit-btn"
+            disabled={loading}
+          >
+
+            {
+              loading
+              ? "Loading..."
+              : t("submit")
+            }
+
           </button>
 
         </form>
