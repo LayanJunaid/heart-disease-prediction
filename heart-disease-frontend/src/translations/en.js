@@ -6,7 +6,7 @@ export default {
   homeTitle:
   "Heart Disease Prediction Tool",
 
-homeDesc:
+  homeDesc:
 `This platform is an AI-powered Heart Disease Prediction System designed to estimate the potential risk of heart disease using medical and health-related information provided by the user.
 
 The prediction process is based on Machine Learning algorithms trained using the UCI Heart Disease Dataset, one of the most widely used datasets in medical prediction research.
@@ -18,70 +18,71 @@ Our goal is to demonstrate how Artificial Intelligence can assist in early healt
 Please note that this system is intended for educational and research purposes only. The prediction results may not always be fully accurate and should never replace professional medical diagnosis or consultation with a healthcare specialist.`,
 
   signIn:"Sign In",
-signUp:"Sign Up",
+  signUp:"Sign Up",
 
-signInDesc:
-"Sign in to access your saved prediction history and profile.",
+  signInDesc:
+  "Sign in to access your saved prediction history and profile.",
 
-signUpDesc:
-"Create an account to save your predictions and manage your profile.",
+  signUpDesc:
+  "Create an account to save your predictions and manage your profile.",
 
-email:"Email",
-password:"Password",
+  email:"Email",
+  password:"Password",
 
-fullName:"Full Name",
+  fullName:"Full Name",
 
-createAccount:"Create Account",
+  createAccount:"Create Account",
 
-profile:"Profile",
+  profile:"Profile",
 
-continueGoogle:
-"Continue with Google",
+  continueGoogle:
+  "Continue with Google",
 
-logout:
-"Logout",
+  logout:
+  "Logout",
 
-viewMore:
-"View More",
+  viewMore:
+  "View More",
 
-viewLess:
-"View Less",
+  viewLess:
+  "View Less",
 
-footerTitle:
-"Heart Disease Prediction System",
+  footerTitle:
+  "Heart Disease Prediction System",
 
-footerDesc1:
-"AI-based tool for early heart risk assessment.",
+  footerDesc1:
+  "AI-based tool for early heart risk assessment.",
 
-footerDesc2:
-"This system is for educational purposes only and does not replace professional medical advice.",
+  footerDesc2:
+  "This system is for educational purposes only and does not replace professional medical advice.",
 
-importantLinks:
-"Important Links",
+  importantLinks:
+  "Important Links",
 
-githubRepo:
-"GitHub Repository",
+  githubRepo:
+  "GitHub Repository",
 
-dataset:
-"UCI Heart Disease Dataset",
+  dataset:
+  "UCI Heart Disease Dataset",
 
-teamMembers:
-"Team Members",
+  teamMembers:
+  "Team Members",
 
-advisor:
-"Advisor",
+  advisor:
+  "Advisor",
 
-history:"History",
+  history:"History",
 
-editProfile:"Edit Profile",
+  editProfile:"Edit Profile",
 
-saveChanges:"Save Changes",
+  saveChanges:"Save Changes",
 
-saveHistory:
-"Want to save your prediction history?",
+  saveHistory:
+  "Want to save your prediction history?",
 
-saveHistoryDesc:
-"Create an account or sign in to save your prediction results and access them later.",
+  saveHistoryDesc:
+  "Create an account or sign in to save your prediction results and access them later.",
+
   startTest:"Start Test",
 
   resources:"Project Resources",
@@ -182,13 +183,4 @@ saveHistoryDesc:
 
   disclaimer:
   "This system is for educational purposes only and does not replace professional medical advice or diagnosis.",
-
-  importantLinks:
-  "Important Links",
-
-  teamMembers:
-  "Team Members",
-
-  advisor:
-  "Advisor",
 };

@@ -16,73 +16,74 @@ Sistem; yaş, kolesterol seviyesi, tansiyon, kalp atış hızı ve diğer öneml
 Bu projenin amacı, yapay zeka teknolojilerinin erken sağlık riski değerlendirmesinde ve tıbbi karar verme süreçlerinin desteklenmesinde nasıl kullanılabileceğini göstermektir.
 
 Lütfen bu sistemin yalnızca eğitim ve araştırma amaçlı olduğunu unutmayın. Sonuçlar her zaman tamamen doğru olmayabilir ve profesyonel tıbbi teşhis veya doktor danışmanlığının yerine geçmez.`,
-  
-signIn:"Giriş Yap",
-signUp:"Kayıt Ol",
 
-signInDesc:
-"Kayıtlı tahmin geçmişinize ve profilinize erişmek için giriş yapın.",
+  signIn:"Giriş Yap",
+  signUp:"Kayıt Ol",
 
-signUpDesc:
-"Tahmin sonuçlarınızı kaydetmek ve profilinizi yönetmek için hesap oluşturun.",
+  signInDesc:
+  "Kayıtlı tahmin geçmişinize ve profilinize erişmek için giriş yapın.",
 
-email:"E-posta",
-password:"Şifre",
+  signUpDesc:
+  "Tahmin sonuçlarınızı kaydetmek ve profilinizi yönetmek için hesap oluşturun.",
 
-fullName:"Ad Soyad",
+  email:"E-posta",
+  password:"Şifre",
 
-createAccount:"Hesap Oluştur",
+  fullName:"Ad Soyad",
 
-profile:"Profil",
+  createAccount:"Hesap Oluştur",
 
-history:"Geçmiş",
+  profile:"Profil",
 
-editProfile:"Profili Düzenle",
+  history:"Geçmiş",
 
-saveChanges:"Değişiklikleri Kaydet",
+  editProfile:"Profili Düzenle",
 
-saveHistory:
-"Tahmin geçmişinizi kaydetmek ister misiniz?",
+  saveChanges:"Değişiklikleri Kaydet",
 
-saveHistoryDesc:
-"Sonuçlarınızı kaydetmek ve daha sonra erişmek için giriş yapın veya hesap oluşturun.",
+  saveHistory:
+  "Tahmin geçmişinizi kaydetmek ister misiniz?",
 
-startTest:"Teste Başla",
+  saveHistoryDesc:
+  "Sonuçlarınızı kaydetmek ve daha sonra erişmek için giriş yapın veya hesap oluşturun.",
 
-continueGoogle:
-"Google ile Devam Et",
-footerTitle:
-"Kalp Hastalığı Tahmin Sistemi",
+  startTest:"Teste Başla",
 
-footerDesc1:
-"Kalp hastalığı riskinin erken değerlendirilmesi için yapay zeka tabanlı araç.",
+  continueGoogle:
+  "Google ile Devam Et",
 
-footerDesc2:
-"Bu sistem yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiyenin yerine geçmez.",
+  footerTitle:
+  "Kalp Hastalığı Tahmin Sistemi",
 
-importantLinks:
-"Önemli Bağlantılar",
+  footerDesc1:
+  "Kalp hastalığı riskinin erken değerlendirilmesi için yapay zeka tabanlı araç.",
 
-githubRepo:
-"GitHub Deposu",
+  footerDesc2:
+  "Bu sistem yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiyenin yerine geçmez.",
 
-dataset:
-"UCI Kalp Hastalığı Veri Seti",
+  importantLinks:
+  "Önemli Bağlantılar",
 
-teamMembers:
-"Takım Üyeleri",
+  githubRepo:
+  "GitHub Deposu",
 
-advisor:
-"Danışman",
+  dataset:
+  "UCI Kalp Hastalığı Veri Seti",
 
-logout:
-"Çıkış Yap",
+  teamMembers:
+  "Takım Üyeleri",
 
-viewMore:
-"Daha Fazla",
+  advisor:
+  "Danışman",
 
-viewLess:
-"Daha Az",
+  logout:
+  "Çıkış Yap",
+
+  viewMore:
+  "Daha Fazla",
+
+  viewLess:
+  "Daha Az",
 
   resources:"Proje Kaynakları",
 
@@ -182,13 +183,4 @@ viewLess:
 
   disclaimer:
   "Bu sistem yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiye veya teşhisin yerine geçmez.",
-
-  importantLinks:
-  "Önemli Bağlantılar",
-
-  teamMembers:
-  "Takım Üyeleri",
-
-  advisor:
-  "Danışman",
 };
