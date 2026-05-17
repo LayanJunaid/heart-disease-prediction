@@ -159,11 +159,6 @@ Please note that this system is intended for educational and research purposes o
   thalDesc:
   "Thalassemia test result category.",
 
-  fasting:"Fasting",
-
-  fastingDesc:
-  "0 = No , 1 = Yes",
-
   result:"Prediction Result",
 
   highRisk:

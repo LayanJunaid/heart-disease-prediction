@@ -159,11 +159,6 @@ export default {
   thalDesc:
   "نتيجة فحص الثلاسيميا.",
 
-  fasting:"الصيام",
-
-  fastingDesc:
-  "0 = لا ، 1 = نعم",
-
   result:"نتيجة التنبؤ",
 
   highRisk:

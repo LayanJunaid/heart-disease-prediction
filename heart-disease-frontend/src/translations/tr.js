@@ -159,11 +159,6 @@ Lütfen bu sistemin yalnızca eğitim ve araştırma amaçlı olduğunu unutmay�
   thalDesc:
   "Talasemi test sonucu kategorisi.",
 
-  fasting:"Açlık",
-
-  fastingDesc:
-  "0 = Hayır , 1 = Evet",
-
   result:"Tahmin Sonucu",
 
   highRisk:

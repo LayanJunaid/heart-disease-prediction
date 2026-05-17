@@ -18,6 +18,7 @@ function Test() {
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
+
     age:"",
     sex:"",
     cp:"",
@@ -31,7 +32,6 @@ function Test() {
     slope:"",
     ca:"",
     thal:"",
-    fasting:"",
   });
 
   const features = [
@@ -57,7 +57,7 @@ function Test() {
       label:t("cp"),
       description:t("cpDesc"),
       min:0,
-      max:4
+      max:3
     },
 
     {
@@ -121,7 +121,7 @@ function Test() {
       label:t("slope"),
       description:t("slopeDesc"),
       min:0,
-      max:3
+      max:2
     },
 
     {
@@ -138,14 +138,6 @@ function Test() {
       description:t("thalDesc"),
       min:0,
       max:3
-    },
-
-    {
-      name:"fasting",
-      label:t("fasting"),
-      description:t("fastingDesc"),
-      min:0,
-      max:1
     },
   ];
 
