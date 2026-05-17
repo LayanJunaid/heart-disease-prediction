@@ -110,7 +110,7 @@ function Test() {
 
     {
       name:"oldpeak",
-      label:t("oldpeak"),
+      label:t("oldpeakDesc"),
       description:t("oldpeakDesc"),
       min:0,
       max:10
@@ -151,7 +151,7 @@ function Test() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
 
@@ -175,15 +175,46 @@ function Test() {
       }
     }
 
-    const fakeProbability =
-      Math.floor(Math.random() * 100);
+    const numericFormData = {};
 
-    navigate("/result", {
-
-      state:{
-        probability:fakeProbability,
-      },
+    Object.keys(formData).forEach((key) => {
+      numericFormData[key] = Number(formData[key]);
     });
+
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const response = await fetch("http://localhost:5001/api/v1/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+        body: JSON.stringify(numericFormData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Prediction failed");
+        return;
+      }
+
+      navigate("/result", {
+
+        state:{
+          probability: Number(data.result.probabilityPercent),
+          riskLevel: data.result.riskLevel,
+          prediction: data.result.prediction,
+          modelUsed: data.result.modelUsed,
+          predictionId: data.predictionId,
+        },
+      });
+
+    } catch (error) {
+      alert("Server connection error");
+      console.error(error);
+    }
   };
 
   return (

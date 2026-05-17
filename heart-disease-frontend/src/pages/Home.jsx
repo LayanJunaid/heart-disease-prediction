@@ -76,10 +76,10 @@ function Home() {
 
             <div className="hero-circle"></div>
 
-            <img
+             <img
               src={Image1}
               alt=""
-            />
+            /> 
 
           </div>
 

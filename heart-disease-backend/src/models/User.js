@@ -14,33 +14,53 @@ const userSchema = new mongoose.Schema(
       minlength: [2, "Name must be at least 2 characters"],
       maxlength: [60, "Name cannot exceed 60 characters"],
     },
+
     email: {
       type: String,
       required: [true, "Email is required"],
-      unique: true, // BU SATIR OTOMATİK İNDEKS OLUŞTURUR
+      unique: true,
       lowercase: true,
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"],
     },
+
     password: {
       type: String,
       required: [true, "Password is required"],
       minlength: [6, "Password must be at least 6 characters"],
-      select: false, // queries by default will not return password
+      select: false,
     },
+
+    authProvider: {
+      type: String,
+      enum: ["local", "google"],
+      default: "local",
+    },
+
+    googleId: {
+      type: String,
+    },
+
+    profileImage: {
+      type: String,
+    },
+
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
     },
+
     refreshToken: {
       type: String,
       select: false,
     },
+
     isActive: {
       type: Boolean,
       default: true,
     },
+
     lastLogin: {
       type: Date,
     },
@@ -58,15 +78,15 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// ─── Hash password before save ────────────────────────────────────────────────
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
+
   const salt = await bcrypt.genSalt(12);
   this.password = await bcrypt.hash(this.password, salt);
+
   next();
 });
 
-// ─── Instance Methods ─────────────────────────────────────────────────────────
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };

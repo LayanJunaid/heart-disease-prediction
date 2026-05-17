@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -5,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from "react-i18next";
 
-import {
-  FaGoogle
-} from "react-icons/fa";
+import { GoogleLogin } from "@react-oauth/google";
 
 import "../styles/auth.css";
 
@@ -17,22 +17,87 @@ function SignUp() {
 
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const saveLoginData = (data) => {
+    localStorage.setItem("accessToken", data.accessToken);
+    localStorage.setItem("refreshToken", data.refreshToken);
+    localStorage.setItem("user", JSON.stringify(data.user));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSignup = async (e) => {
 
     e.preventDefault();
 
-    localStorage.setItem(
-      "user",
+    try {
+      const response = await fetch("http://localhost:5001/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      JSON.stringify({
-        name:"John Doe",
-        email:"johndoe@gmail.com",
-      })
-    );
+      const data = await response.json();
 
-    navigate("/profile");
+      if (!response.ok) {
+        alert(data.message || "Signup failed");
+        return;
+      }
 
-    window.location.reload();
+      saveLoginData(data);
+
+      navigate("/profile");
+      window.location.reload();
+
+    } catch (error) {
+      alert("Server connection error");
+      console.error(error);
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+
+    try {
+      const response = await fetch("http://localhost:5001/api/v1/auth/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          credential: credentialResponse.credential,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Google signup failed");
+        return;
+      }
+
+      saveLoginData(data);
+
+      navigate("/profile");
+      window.location.reload();
+
+    } catch (error) {
+      alert("Server connection error");
+      console.error(error);
+    }
   };
 
   return (
@@ -52,16 +117,18 @@ function SignUp() {
             {t("signUpDesc")}
           </p>
 
-          <button
-            className="google-btn"
-            onClick={handleSignup}
-          >
-
-            <FaGoogle />
-
-            {t("continueGoogle")}
-
-          </button>
+          
+         <GoogleLogin
+           onSuccess={handleGoogleSuccess}
+           onError={() => {
+           alert("Google login failed");
+             }}
+               locale="en"
+               text="signin_with"
+                size="large"
+              width="650"
+             />
+       
 
           <div className="divider">
             OR
@@ -74,17 +141,29 @@ function SignUp() {
 
             <input
               type="text"
+              name="name"
               placeholder={t("fullName")}
+              value={formData.name}
+              onChange={handleChange}
+              required
             />
 
             <input
               type="email"
+              name="email"
               placeholder={t("email")}
+              value={formData.email}
+              onChange={handleChange}
+              required
             />
 
             <input
               type="password"
+              name="password"
               placeholder={t("password")}
+              value={formData.password}
+              onChange={handleChange}
+              required
             />
 
             <button>

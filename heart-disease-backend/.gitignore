@@ -25,3 +25,5 @@ Thumbs.db
 
 # Build
 dist/
+# ML training intermediate files
+heart-disease-backend/ml/saved_data/
