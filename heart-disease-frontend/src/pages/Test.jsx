@@ -17,127 +17,129 @@ function Test() {
 
   const { t } = useTranslation();
 
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
 
-    age:"",
-    sex:"",
-    cp:"",
-    trestbps:"",
-    chol:"",
-    fbs:"",
-    restecg:"",
-    thalach:"",
-    exang:"",
-    oldpeak:"",
-    slope:"",
-    ca:"",
-    thal:"",
+    age: "",
+    sex: "",
+    cp: "",
+    trestbps: "",
+    chol: "",
+    fbs: "",
+    restecg: "",
+    thalach: "",
+    exang: "",
+    oldpeak: "",
+    slope: "",
+    ca: "",
+    thal: "",
   });
 
   const features = [
 
     {
-      name:"age",
-      label:t("age"),
-      description:t("ageDesc"),
-      min:1,
-      max:120
+      name: "age",
+      label: t("age"),
+      description: t("ageDesc"),
+      min: 1,
+      max: 120
     },
 
     {
-      name:"sex",
-      label:t("sex"),
-      description:t("sexDescription"),
-      min:0,
-      max:1
+      name: "sex",
+      label: t("sex"),
+      description: t("sexDescription"),
+      min: 0,
+      max: 1
     },
 
     {
-      name:"cp",
-      label:t("cp"),
-      description:t("cpDesc"),
-      min:0,
-      max:3
+      name: "cp",
+      label: t("cp"),
+      description: t("cpDesc"),
+      min: 0,
+      max: 3
     },
 
     {
-      name:"trestbps",
-      label:t("trestbps"),
-      description:t("trestbpsDesc"),
-      min:50,
-      max:250
+      name: "trestbps",
+      label: t("trestbps"),
+      description: t("trestbpsDesc"),
+      min: 50,
+      max: 250
     },
 
     {
-      name:"chol",
-      label:t("chol"),
-      description:t("cholDesc"),
-      min:50,
-      max:700
+      name: "chol",
+      label: t("chol"),
+      description: t("cholDesc"),
+      min: 50,
+      max: 700
     },
 
     {
-      name:"fbs",
-      label:t("fbs"),
-      description:t("fbsDesc"),
-      min:0,
-      max:1
+      name: "fbs",
+      label: t("fbs"),
+      description: t("fbsDesc"),
+      min: 0,
+      max: 1
     },
 
     {
-      name:"restecg",
-      label:t("restecg"),
-      description:t("restecgDesc"),
-      min:0,
-      max:2
+      name: "restecg",
+      label: t("restecg"),
+      description: t("restecgDesc"),
+      min: 0,
+      max: 2
     },
 
     {
-      name:"thalach",
-      label:t("thalach"),
-      description:t("thalachDesc"),
-      min:50,
-      max:250
+      name: "thalach",
+      label: t("thalach"),
+      description: t("thalachDesc"),
+      min: 50,
+      max: 250
     },
 
     {
-      name:"exang",
-      label:t("exang"),
-      description:t("exangDesc"),
-      min:0,
-      max:1
+      name: "exang",
+      label: t("exang"),
+      description: t("exangDesc"),
+      min: 0,
+      max: 1
     },
 
     {
-      name:"oldpeak",
-      label:t("oldpeakDesc"),
-      description:t("oldpeakDesc"),
-      min:0,
-      max:10
+      name: "oldpeak",
+      label: t("oldpeak"),
+      description: t("oldpeakDesc"),
+      min: 0,
+      max: 10
     },
 
     {
-      name:"slope",
-      label:t("slope"),
-      description:t("slopeDesc"),
-      min:0,
-      max:2
+      name: "slope",
+      label: t("slope"),
+      description: t("slopeDesc"),
+      min: 0,
+      max: 2
     },
 
     {
-      name:"ca",
-      label:t("ca"),
-      description:t("caDesc"),
-      min:0,
-      max:4
+      name: "ca",
+      label: t("ca"),
+      description: t("caDesc"),
+      min: 0,
+      max: 4
     },
 
     {
-      name:"thal",
-      label:t("thal"),
-      description:t("thalDesc"),
-      min:0,
-      max:3
+      name: "thal",
+      label: t("thal"),
+      description: t("thalDesc"),
+      min: 0,
+      max: 3
     },
   ];
 
@@ -147,7 +149,7 @@ function Test() {
 
     setFormData({
       ...formData,
-      [name]:value,
+      [name]: value,
     });
   };
 
@@ -155,17 +157,17 @@ function Test() {
 
     e.preventDefault();
 
-    for(let feature of features){
+    for (let feature of features) {
 
       const value = Number(
         formData[feature.name]
       );
 
-      if(
+      if (
         isNaN(value) ||
         value < feature.min ||
         value > feature.max
-      ){
+      ) {
 
         alert(
           `${t("invalid")} ${feature.label}`
@@ -175,45 +177,86 @@ function Test() {
       }
     }
 
-    const numericFormData = {};
-
-    Object.keys(formData).forEach((key) => {
-      numericFormData[key] = Number(formData[key]);
-    });
+    setLoading(true);
 
     try {
-      const token = localStorage.getItem("accessToken");
 
-      const response = await fetch("http://localhost:5001/api/v1/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(token && { Authorization: `Bearer ${token}` }),
-        },
-        body: JSON.stringify(numericFormData),
+      const numericFormData = {};
+
+      Object.keys(formData).forEach((key) => {
+
+        numericFormData[key] = Number(
+          formData[key]
+        );
+
       });
+
+      const token = localStorage.getItem(
+        "accessToken"
+      );
+
+      const response = await fetch(
+        "http://localhost:5001/api/v1/predict",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+
+            ...(token && {
+              Authorization: `Bearer ${token}`,
+            }),
+          },
+
+          body: JSON.stringify(
+            numericFormData
+          ),
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Prediction failed");
+
+        alert(
+          data.message || "Prediction failed"
+        );
+
         return;
       }
 
       navigate("/result", {
 
-        state:{
-          probability: Number(data.result.probabilityPercent),
-          riskLevel: data.result.riskLevel,
-          prediction: data.result.prediction,
-          modelUsed: data.result.modelUsed,
-          predictionId: data.predictionId,
+        state: {
+
+          probability: Number(
+            data.result.probabilityPercent
+          ),
+
+          riskLevel:
+            data.result.riskLevel,
+
+          prediction:
+            data.result.prediction,
+
+          modelUsed:
+            data.result.modelUsed,
+
+          predictionId:
+            data.predictionId,
         },
       });
 
     } catch (error) {
+
       alert("Server connection error");
+
       console.error(error);
+
+    } finally {
+
+      setLoading(false);
+
     }
   };
 
@@ -278,8 +321,17 @@ function Test() {
             </div>
           ))}
 
-          <button className="submit-btn">
-            {t("submit")}
+          <button
+            className="submit-btn"
+            disabled={loading}
+          >
+
+            {
+              loading
+                ? "Loading..."
+                : t("submit")
+            }
+
           </button>
 
         </form>
