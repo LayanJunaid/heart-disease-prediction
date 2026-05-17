@@ -43,7 +43,7 @@ function SignUp() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5001/api/v1/auth/register", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ function SignUp() {
   const handleGoogleSuccess = async (credentialResponse) => {
 
     try {
-      const response = await fetch("http://localhost:5001/api/v1/auth/google", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/auth/google`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

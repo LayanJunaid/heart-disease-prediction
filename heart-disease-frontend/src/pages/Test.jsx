@@ -196,7 +196,7 @@ function Test() {
       );
 
       const response = await fetch(
-        "http://localhost:5001/api/v1/predict",
+        `${import.meta.env.VITE_API_URL}/api/v1/predict`,
         {
           method: "POST",
 
