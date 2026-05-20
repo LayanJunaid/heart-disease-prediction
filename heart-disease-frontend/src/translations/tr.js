@@ -182,6 +182,9 @@ Lütfen bu sistemin yalnızca eğitim ve araştırma amaçlı olduğunu unutmay�
   range: "Aralık",
   ageAccuracyWarning: "Daha doğru tahminler için 28 yaş ve üzeri önerilir.",
 
+  accountCreated: "Hesap başarıyla oluşturuldu! Lütfen giriş yapın.",
+  signupFailed: "Hesap oluşturma başarısız, lütfen tekrar deneyin.",
+  googleFailed: "Google ile giriş başarısız, lütfen tekrar deneyin.",
+  serverError: "Sunucuya bağlanırken hata oluştu, lütfen daha sonra tekrar deneyin.",
 
-accountCreated: "Hesap başarıyla oluşturuldu! Lütfen giriş yapın.",
 };

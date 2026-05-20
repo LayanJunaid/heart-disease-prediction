@@ -182,5 +182,10 @@ Please note that this system is intended for educational and research purposes o
   range: "Range",
   ageAccuracyWarning: "For more accurate predictions, age 28+ is recommended.",
 
-  accountCreated: "Account created successfully! Please sign in."
+  accountCreated: "Account created successfully! You will be redirected to the login page...",
+  signupFailed: "Failed to create account, please try again.",
+  googleFailed: "Failed to sign in with Google, please try again.",
+  serverError: "Error connecting to the server, please try again."
+
+
 };
