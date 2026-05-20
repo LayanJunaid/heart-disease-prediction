@@ -1,5 +1,5 @@
 
- //Ham UCI verisi (13 özellik) gelir → service OHE'ye çevirir → Python SVM tahmin yapar.
+ //raw UCI data (13 feature) gelir → service OHE'ye çevirir → Python SVM tahmin yapar.
  
 
 const predictionService = require("../services/prediction.service");
@@ -12,7 +12,7 @@ const logger = require("../utils/logger");
 exports.predict = async (req, res, next) => {
   const startTime = Date.now();
   try {
-    // Ham UCI değerleri (validate.js zaten doğruladı)
+    // Raw UCI information
     const rawFeatures = {
       age      : req.body.age,
       sex      : req.body.sex,
@@ -32,10 +32,10 @@ exports.predict = async (req, res, next) => {
     const userId    = req.user ? req.user.id : null;
     const ipAddress = req.ip || req.headers["x-forwarded-for"];
 
-    // Service: OHE dönüşümü + Python SVM tahmini
+    // Service: OHE transformation + python predict_bridge + fallback
     const predictionResult = await predictionService.runPrediction(rawFeatures);
 
-    // DB'ye kaydet (ham feature'larla)
+    // DB'ye save (raw features)
     const record = await Prediction.create({
       user    : userId,
       features: rawFeatures,
@@ -78,7 +78,7 @@ exports.getPredictionById = async (req, res, next) => {
       "user", "name email"
     );
 
-    if (!prediction) return next(new AppError("Tahmin kaydı bulunamadı.", 404));
+    if (!prediction) return next(new AppError("prediction not found.", 404));
 
     if (
       prediction.user &&
