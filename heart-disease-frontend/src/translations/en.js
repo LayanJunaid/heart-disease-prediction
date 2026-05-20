@@ -181,4 +181,6 @@ Please note that this system is intended for educational and research purposes o
 
   range: "Range",
   ageAccuracyWarning: "For more accurate predictions, age 28+ is recommended.",
+
+  accountCreated: "Account created successfully! Please sign in."
 };

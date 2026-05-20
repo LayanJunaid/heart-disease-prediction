@@ -58,10 +58,8 @@ function SignUp() {
         return;
       }
 
-      saveLoginData(data);
-
-      navigate("/profile");
-      window.location.reload();
+      alert(t("accountCreated"));
+      navigate("/signin");
 
     } catch (error) {
       alert("Server connection error");
@@ -117,18 +115,18 @@ function SignUp() {
             {t("signUpDesc")}
           </p>
 
-          
-         <GoogleLogin
-           onSuccess={handleGoogleSuccess}
-           onError={() => {
-           alert("Google login failed");
-             }}
-               locale="en"
-               text="signin_with"
-                size="large"
-              width="650"
-             />
-       
+
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => {
+              alert("Google login failed");
+            }}
+            locale="en"
+            text="signin_with"
+            size="large"
+            width="650"
+          />
+
 
           <div className="divider">
             OR
