@@ -187,4 +187,6 @@ Lütfen bu sistemin yalnızca eğitim ve araştırma amaçlı olduğunu unutmay�
   googleFailed: "Google ile giriş başarısız, lütfen tekrar deneyin.",
   serverError: "Sunucuya bağlanırken hata oluştu, lütfen daha sonra tekrar deneyin.",
 
+loginSuccess: "tem تسجيل الدخول بنجاح!",
+loginFailed: "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
 };

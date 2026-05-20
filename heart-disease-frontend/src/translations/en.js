@@ -185,7 +185,8 @@ Please note that this system is intended for educational and research purposes o
   accountCreated: "Account created successfully! You will be redirected to the login page...",
   signupFailed: "Failed to create account, please try again.",
   googleFailed: "Failed to sign in with Google, please try again.",
-  serverError: "Error connecting to the server, please try again."
+  serverError: "Error connecting to the server, please try again.",
 
-
+loginSuccess: "Login successful!",
+loginFailed: "Invalid email or password.",
 };
