@@ -9,10 +9,7 @@ venv/
 logs/
 *.log
 
-# ML artifacts (large binary files — share separately or via Git LFS)
-ml/model.pkl
-ml/scaler.pkl
-ml/features.pkl
+
 
 
 # OS
@@ -25,3 +22,5 @@ Thumbs.db
 
 # Build
 dist/
+# ML training intermediate files
+heart-disease-backend/ml/saved_data/

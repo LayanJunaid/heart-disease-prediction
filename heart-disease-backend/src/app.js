@@ -15,6 +15,7 @@ const { errorHandler, notFound } = require("./middleware/errorHandler");
 const logger = require("./utils/logger");
 
 // Routes
+
 const authRoutes = require("./routes/auth.routes");
 const predictionRoutes = require("./routes/prediction.routes");
 const historyRoutes = require("./routes/history.routes");
@@ -57,7 +58,8 @@ if (process.env.NODE_ENV !== "test") {
   );
 }
 
-// API Routes 
+// API Routes
+app.use("/api/v1/auth", authRoutes); 
 app.use("/api/v1/predict", predictionLimiter, predictionRoutes);
 app.use("/api/v1/history", historyRoutes);
 app.use("/api/v1/resources", resourceRoutes);

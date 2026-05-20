@@ -4,6 +4,11 @@ const User = require("../models/User");
 const jwtConfig = require("../config/jwt");
 const { AppError } = require("../middleware/errorHandler");
 const logger = require("../utils/logger");
+const { OAuth2Client } = require("google-auth-library");
+
+const googleClient = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID
+);
 
 //  Helpers 
 const signAccessToken = (userId) =>
@@ -131,6 +136,67 @@ exports.updatePassword = async (req, res, next) => {
 
     user.password = newPassword;
     await user.save();
+
+    sendTokens(user, 200, res);
+  } catch (err) {
+    next(err);
+  }
+};
+// Google Login / Signup
+exports.googleLogin = async (req, res, next) => {
+  try {
+    const { credential } = req.body;
+
+    if (!credential) {
+      return next(new AppError("Google credential is required.", 400));
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    const email = payload.email;
+    const name = payload.name;
+    const picture = payload.picture;
+    const googleId = payload.sub;
+
+    if (!email) {
+      return next(new AppError("Google account email not found.", 400));
+    }
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        password: googleId + process.env.JWT_SECRET.slice(0, 10),
+        authProvider: "google",
+        googleId,
+        profileImage: picture,
+      });
+    }
+
+    if (!user.isActive) {
+      return next(new AppError("Account is deactivated.", 403));
+    }
+
+    user.lastLogin = new Date();
+
+    if (!user.googleId) {
+      user.googleId = googleId;
+    }
+
+    if (!user.profileImage && picture) {
+      user.profileImage = picture;
+    }
+
+    await user.save({ validateBeforeSave: false });
+
+    logger.info(`User logged in with Google: ${email}`);
 
     sendTokens(user, 200, res);
   } catch (err) {

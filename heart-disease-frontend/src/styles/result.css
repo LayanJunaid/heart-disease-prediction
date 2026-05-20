@@ -1,0 +1,207 @@
+.result-page{
+
+  min-height:100vh;
+
+  background:#f8f9fc;
+
+  padding:70px 25px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.result-card{
+
+  width:100%;
+
+  max-width:650px;
+
+  background:white;
+
+  padding:45px 35px;
+
+  border-radius:30px;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.08);
+
+  position:relative;
+
+  z-index:2;
+
+  text-align:center;
+}
+
+.result-card h2{
+
+  margin-bottom:30px;
+
+  color:#111;
+}
+
+.percentage-box{
+
+  width:170px;
+
+  height:170px;
+
+  border-radius:50%;
+
+  margin:auto;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-size:40px;
+
+  font-weight:800;
+
+  color:white;
+
+  margin-bottom:25px;
+}
+
+.result-description{
+
+  color:#555;
+
+  line-height:2;
+
+  margin-bottom:30px;
+}
+
+.result-note{
+
+  background:#f5f9ff;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  color:#666;
+
+  line-height:1.9;
+
+  margin-top:20px;
+}
+
+.save-history-box{
+
+  margin-top:35px;
+
+  background:#f7fbff;
+
+  padding:25px;
+
+  border-radius:24px;
+}
+
+.save-history-box h4{
+
+  margin-bottom:15px;
+}
+
+.save-history-box p{
+
+  color:#666;
+
+  line-height:1.9;
+
+  margin-bottom:20px;
+}
+
+.save-history-buttons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:15px;
+
+  flex-wrap:wrap;
+}
+
+.save-history-buttons a{
+
+  text-decoration:none;
+
+  background:
+  linear-gradient(
+    135deg,
+    #57b8ff,
+    #2d7be5
+  );
+
+  color:white;
+
+  padding:14px 24px;
+
+  border-radius:18px;
+
+  font-weight:700;
+
+  transition:0.3s;
+}
+
+.save-history-buttons a:hover{
+
+  transform:translateY(-3px);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+  .result-page{
+
+    padding:40px 18px 80px;
+  }
+
+  .result-card{
+
+    padding:35px 22px;
+
+    border-radius:24px;
+  }
+
+  .result-card h2{
+
+    font-size:28px;
+  }
+
+  .percentage-box{
+
+    width:140px;
+
+    height:140px;
+
+    font-size:32px;
+  }
+
+  .result-description{
+
+    font-size:14px;
+
+    line-height:2;
+  }
+
+  .save-history-buttons{
+
+    flex-direction:column;
+  }
+
+  .save-history-buttons a{
+
+    width:100%;
+  }
+}

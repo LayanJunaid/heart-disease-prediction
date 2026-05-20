@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const logger = require("../utils/logger");
 
 const connectDB = async () => {
-  const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/heart_disease_db";
+  const uri = process.env.MONGODB_URI ;
              //    MongoDB Atlas      ||        Local
   try {
     const conn = await mongoose.connect(uri, {
@@ -27,8 +27,9 @@ const connectDB = async () => {
     mongoose.connection.on("error", (err) => {
       logger.error("MongoDB connection error:", err.message);
     });
-  } catch (error) {
-    logger.error("MongoDB connection failed:", error.message);
+  }catch (error) {
+    console.error("FULL MongoDB ERROR:", error);
+    logger.error(`MongoDB connection failed: ${error.message}`);
     throw error;
   }
 };
