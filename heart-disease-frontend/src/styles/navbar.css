@@ -388,3 +388,23 @@
     font-size:28px;
   }
 }
+.dropdown-menu{
+
+  right:auto;
+
+  left:0;
+
+  min-width:160px;
+}
+
+.language-dropdown{
+
+  width:100%;
+}
+
+.language-btn{
+
+  width:100%;
+
+  justify-content:space-between;
+}
