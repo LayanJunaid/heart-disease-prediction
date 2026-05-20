@@ -2,15 +2,15 @@
 
 An AI-powered full-stack web application for predicting heart disease risk using Machine Learning and Feature Selection techniques based on the Cleveland UCI Heart Disease Dataset.
 
-🌐 **Live Demo:**
-[Heart Disease Prediction Website](https://heart-disease-prediction-virid-mu.vercel.app/?utm_source=chatgpt.com)
+ **Live Demo:**
+[Heart Disease Prediction Website](https://heart-disease-prediction-virid-mu.vercel.app)
 
-📂 **GitHub Repository:**
-[GitHub Repository](https://github.com/LayanJunaid/heart-disease-prediction/tree/main?utm_source=chatgpt.com)
+ **GitHub Repository:**
+[GitHub Repository](https://github.com/LayanJunaid/heart-disease-prediction/tree/main)
 
 ---
 
-# 📌 Project Overview
+#  Project Overview
 
 Heart disease remains one of the leading causes of death worldwide, making early prediction and risk assessment critically important in healthcare systems.
 
@@ -34,7 +34,7 @@ The final production model is based on:
 
 ---
 
-# 🚀 Features
+#  Features
 
 * Full-stack AI-powered web application
 * Real-time heart disease prediction
@@ -52,7 +52,7 @@ The final production model is based on:
 
 ---
 
-# 🧠 Machine Learning Pipeline
+#  Machine Learning Pipeline
 
 ## Dataset
 
@@ -132,7 +132,7 @@ Evaluation Metrics:
 
 ---
 
-# 📊 Final Model Results
+#  Final Model Results
 
 | Model | Feature Selection | F1-Score | Accuracy |
 | ----- | ----------------- | -------- | -------- |
@@ -147,7 +147,7 @@ Key Findings:
 
 ---
 
-# 🏗️ System Architecture
+#  System Architecture
 
 The system follows a **Three-Tier Architecture**:
 
@@ -161,7 +161,7 @@ MongoDB Database
 
 ---
 
-# 🛠️ Technologies Used
+#  Technologies Used
 
 ## Frontend
 
@@ -202,7 +202,7 @@ MongoDB Database
 
 ---
 
-# 📷 Application Screenshots
+#  Application Screenshots
 
 ## Home Page
 
@@ -222,7 +222,7 @@ MongoDB Database
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```bash
 heart-disease-prediction/
@@ -275,7 +275,7 @@ heart-disease-prediction/
 
 ---
 
-# ⚙️ Installation & Setup
+#  Installation & Setup
 
 ## Clone Repository
 
@@ -357,7 +357,7 @@ POST /api/predict
 
 ---
 
-# 📱 Frontend Features
+#  Frontend Features
 
 * Real-time prediction results
 * Dynamic probability visualization
@@ -370,7 +370,7 @@ POST /api/predict
 
 ---
 
-# 🔒 Disclaimer
+#  Disclaimer
 
 This project is intended for:
 
@@ -382,7 +382,7 @@ This application is **NOT** a medical diagnostic tool and should not replace pro
 
 ---
 
-# 👨‍💻 Team Members
+#  Team Members
 
 * Sidra Ashram
 * Layan Junaid
@@ -394,7 +394,7 @@ This application is **NOT** a medical diagnostic tool and should not replace pro
 
 ---
 
-# 📈 Future Improvements
+#  Future Improvements
 
 * Cloud deployment using AWS/Azure
 * Additional medical datasets integration
@@ -405,13 +405,13 @@ This application is **NOT** a medical diagnostic tool and should not replace pro
 
 ---
 
-# 📄 License
+#  License
 
 This project was developed for academic and educational purposes as a Software Engineering Graduation Project at Hasan Kalyoncu University.
 
 ---
 
-# 📚 References
+#  References
 
 * Cleveland UCI Heart Disease Dataset
 * scikit-learn Documentation
@@ -420,7 +420,7 @@ This project was developed for academic and educational purposes as a Software E
 
 ---
 
-## ⭐ Final Production Configuration
+##  Final Production Configuration
 
 | Component          | Final Selection              |
 | ------------------ | ---------------------------- |
