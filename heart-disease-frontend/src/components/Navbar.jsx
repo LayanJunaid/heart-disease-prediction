@@ -9,7 +9,7 @@ import {
 
 import { useTranslation } from "react-i18next";
 
-import UKFlag from "../assets/uk.png";
+import UKFlag from "../assets/uk.jpg";
 
 import SyriaFlag from "../assets/syria.jpg";
 
