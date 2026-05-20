@@ -60,53 +60,71 @@ function Footer() {
           {t("teamMembers")}
         </h4>
 
-        <div className="member">
+        <a
+          className="member-link"
 
-          <span>
-            Sidra Ashram
-          </span>
+          href="https://github.com/SidraAhram"
 
-          <a
-            href="https://github.com/SidraAhram"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub />
-          </a>
+          target="_blank"
 
-        </div>
+          rel="noopener noreferrer"
+        >
 
-        <div className="member">
+          <div className="member">
 
-          <span>
-            Layan Junaid
-          </span>
+            <FaGithub className="github-icon" />
 
-          <a
-            href="https://github.com/LayanJunaid"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub />
-          </a>
+            <span>
+              Sidra Ashram
+            </span>
 
-        </div>
+          </div>
 
-        <div className="member">
+        </a>
 
-          <span>
-            Ruha Kabbani
-          </span>
+        <a
+          className="member-link"
 
-          <a
-            href="https://github.com/afakruha2003"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub />
-          </a>
+          href="https://github.com/LayanJunaid"
 
-        </div>
+          target="_blank"
+
+          rel="noopener noreferrer"
+        >
+
+          <div className="member">
+
+            <FaGithub className="github-icon" />
+
+            <span>
+              Layan Junaid
+            </span>
+
+          </div>
+
+        </a>
+
+        <a
+          className="member-link"
+
+          href="https://github.com/afakruha2003"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
+        >
+
+          <div className="member">
+
+            <FaGithub className="github-icon" />
+
+            <span>
+              Ruha Kabbani
+            </span>
+
+          </div>
+
+        </a>
 
       </div>
 
