@@ -178,4 +178,7 @@ Lütfen bu sistemin yalnızca eğitim ve araştırma amaçlı olduğunu unutmay�
 
   disclaimer:
   "Bu sistem yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiye veya teşhisin yerine geçmez.",
+
+  range: "Aralık",
+  ageAccuracyWarning: "Daha doğru tahminler için 28 yaş ve üzeri önerilir.",
 };

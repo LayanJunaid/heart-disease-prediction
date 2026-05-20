@@ -330,3 +330,31 @@
     top:10px;
   }
 }
+
+.feature-range{
+
+  display:block;
+
+  margin-bottom:12px;
+
+  color:#2d7be5;
+
+  font-size:13px;
+
+  font-weight:600;
+}
+
+.age-warning{
+
+  display:block;
+
+  margin-bottom:12px;
+
+  color:#ff8c42;
+
+  font-size:12px;
+
+  font-weight:600;
+
+  line-height:1.5;
+}

@@ -300,8 +300,33 @@ function Test() {
                 {feature.description}
               </small>
 
+              <small className="feature-range">
+
+  {t("range")}:
+  {" "}
+  {feature.min}
+  {" - "}
+  {feature.max}
+
+</small>
+
+{
+  feature.name === "age" && (
+
+    <small className="age-warning">
+
+      {t("ageAccuracyWarning")}
+
+    </small>
+  )
+}
+
               <input
                 type="number"
+
+                inputMode="numeric"
+
+                placeholder={`${feature.min} - ${feature.max}`}
 
                 min={feature.min}
 

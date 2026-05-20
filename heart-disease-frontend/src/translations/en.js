@@ -178,4 +178,7 @@ Please note that this system is intended for educational and research purposes o
 
   disclaimer:
   "This system is for educational purposes only and does not replace professional medical advice or diagnosis.",
+
+  range: "Range",
+  ageAccuracyWarning: "For more accurate predictions, age 28+ is recommended.",
 };
