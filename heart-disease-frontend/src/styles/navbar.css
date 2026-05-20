@@ -397,14 +397,15 @@
   min-width:160px;
 }
 
-.language-dropdown{
-
-  width:100%;
-}
-
 .language-btn{
 
-  width:100%;
+  width:auto;
 
-  justify-content:space-between;
+  min-width:unset;
+
+  padding:9px 12px;
+
+  font-size:12px;
+
+  gap:8px;
 }
