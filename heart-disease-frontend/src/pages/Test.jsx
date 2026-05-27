@@ -138,7 +138,7 @@ function Test() {
       name: "thal",
       label: t("thal"),
       description: t("thalDesc"),
-      min: 0,
+      min: 1,
       max: 3
     },
   ];
