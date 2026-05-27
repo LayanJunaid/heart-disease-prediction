@@ -313,7 +313,7 @@ pip install -r requirements.txt
 
 ---
 
-# 🔌 API Endpoint
+# API Endpoint
 
 ## Predict Heart Disease
 
